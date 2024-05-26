@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  setup-backend:
+    runs-on: self-hosted  # Use the label of your self-hosted runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Specify the version of Node.js you want to use
+
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: Setup environment variables
+      run: |
+        echo "MONGO_CONNECTION_STRING=${{ secrets.MONGO_CONNECTION_STRING }}" >> $GITHUB_ENV
+        echo "SMS_SID=${{ secrets.SMS_SID }}" >> $GITHUB_ENV
+        echo "SMS_AUTH_TOKEN=${{ secrets.SMS_AUTH_TOKEN }}" >> $GITHUB_ENV
+
+  build-frontend:
+    runs-on: self-hosted  # Use the label of your self-hosted runner
+    needs: setup-backend  # Ensure frontend build waits for backend setup to finish
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Specify the version of Node.js you want to use
+
+    - name: Install dependencies
+      working-directory: ./frontend
+      run: npm install
+
+    - name: Build frontend
+      working-directory: ./frontend
+      run: npm run build

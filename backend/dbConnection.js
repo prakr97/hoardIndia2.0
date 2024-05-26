@@ -1,8 +1,8 @@
 
+require('dotenv').config();
 const mongoose = require('mongoose');
 
-let mongoURI = `mongodb+srv://hoard:hoard@cluster0.m6jje5c.mongodb.net/`;
-
+const mongoURI = process.env.MONGO_CONNECTION_STRING;
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoURI, {});
