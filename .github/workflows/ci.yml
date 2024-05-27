@@ -72,13 +72,3 @@ jobs:
     - name: Copy updated frontend code to parent directory
       run: |
         sudo cp -r /root/hoardIndia2.0/_work/hoardIndia2.0/hoardIndia2.0/frontend/* /root/hoardIndia2.0/frontend/
-    
-    - name: Install PM2
-      run: |
-        sudo /root/.nvm/versions/node/v14.16.0/bin/npm install -g pm2
-      working-directory: /root/hoardIndia2.0
-
-    - name: Restart backend service with PM2
-      run: |
-        pm2 restart hoardIndia_server
-      working-directory: /root/hoardIndia2.0
