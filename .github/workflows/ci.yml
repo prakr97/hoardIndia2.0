@@ -53,3 +53,23 @@ jobs:
     - name: Build frontend
       working-directory: ./frontend
       run: npm run build
+
+  update-code:
+    runs-on: self-hosted  # Use the label of your self-hosted runner
+    needs: [setup-backend, build-frontend]  # Ensure this job waits for both setup-backend and build-frontend to finish
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy updated backend code to parent directory
+      run: |
+        cp -r _work/hoardIndia2.0/hoardIndia2.0/backend/* ./backend/
+
+    - name: Copy updated frontend code to parent directory
+      run: |
+        cp -r _work/hoardIndia2.0/hoardIndia2.0/frontend/* ./frontend/
+
+    - name: Restart backend service with PM2
+      run: |
+        pm2 restart hoardIndia_server
