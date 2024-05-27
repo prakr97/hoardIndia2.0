@@ -25,9 +25,9 @@ jobs:
 
     - name: Setup environment variables
       run: |
-        echo "MONGO_CONNECTION_STRING=${{ vars.MONGO_CONNECTION_STRING }}" >> $GITHUB_ENV
-        echo "SMS_SID=${{ vars.SMS_SID }}" >> $GITHUB_ENV
-        echo "SMS_AUTH_TOKEN=${{ vars.SMS_AUTH_TOKEN }}" >> $GITHUB_ENV
+        echo "MONGO_CONNECTION_STRING=${{ secrets.MONGO_CONNECTION_STRING }}" >> $GITHUB_ENV
+        echo "SMS_SID=${{ secrets.SMS_SID }}" >> $GITHUB_ENV
+        echo "SMS_AUTH_TOKEN=${{ secrets.SMS_AUTH_TOKEN }}" >> $GITHUB_ENV
 
     - name: Verify backend code update
       working-directory: ./backend
