@@ -10,12 +10,17 @@ const path = require('path');
 
 
 // console.log(__dirname)
-
+const corsOptions = {
+  origin: 'http://5.161.224.84', // Replace with your frontend domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
 // const chartRoutes = require('./routes/chartRoutes.js')
 const app = express();
 const PORT = 5000;
 
-app.use(cors()); 
+app.use(cors(corsOptions)); 
 app.use(bodyParser.json()); 
 
 app.use('/order', orderRoutes);
