@@ -71,7 +71,7 @@ jobs:
 
     - name: Copy updated frontend code to parent directory
       run: |
-        sudo cp -r _work/hoardIndia2.0/hoardIndia2.0/frontend/* ./frontend/
+        sudo cp -r /root/hoardIndia2.0/_work/hoardIndia2.0/hoardIndia2.0/frontend/* /root/hoardIndia2.0/backend/
 
     - name: Restart backend service with PM2
       run: |

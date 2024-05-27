@@ -25,7 +25,7 @@ app.use('/otp', otpRoutes)
 
 // app.get('*', (req, res)=> res.sendFile(path.join(__dirname, '/frontend/dist/index.html')))
 app.get('/', (req, res) => {
-  res.send('Hello Worldzzzzzzz');
+  res.send('Hello World test!!');
 });
 
 app.listen(PORT, () => {
