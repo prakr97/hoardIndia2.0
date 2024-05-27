@@ -61,13 +61,13 @@ jobs:
     steps:
     - name: Print current working directory
       run: pwd
-      
+
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Copy updated backend code to parent directory
       run: |
-        sudo cp -r _work/hoardIndia2.0/hoardIndia2.0/backend/* ./backend/
+        sudo cp -r /root/hoardIndia2.0/_work/hoardIndia2.0/hoardIndia2.0/backend/* /root/hoardIndia2.0/backend/
 
     - name: Copy updated frontend code to parent directory
       run: |
