@@ -74,8 +74,11 @@ jobs:
         sudo cp -r /root/hoardIndia2.0/_work/hoardIndia2.0/hoardIndia2.0/frontend/* /root/hoardIndia2.0/frontend/
     
     - name: Install PM2
-      run: npm install -g pm2
+      run: |
+        sudo npm install -g pm2
+      working-directory: /root/hoardIndia2.0
 
     - name: Restart backend service with PM2
       run: |
         pm2 restart hoardIndia_server
+      working-directory: /root/hoardIndia2.0
