@@ -29,6 +29,10 @@ jobs:
         echo "SMS_SID=${{ secrets.SMS_SID }}" >> $GITHUB_ENV
         echo "SMS_AUTH_TOKEN=${{ secrets.SMS_AUTH_TOKEN }}" >> $GITHUB_ENV
 
+    - name: Verify backend code update
+      working-directory: ./backend
+      run: cat server.js
+
   build-frontend:
     runs-on: self-hosted  # Use the label of your self-hosted runner
     needs: setup-backend  # Ensure frontend build waits for backend setup to finish
